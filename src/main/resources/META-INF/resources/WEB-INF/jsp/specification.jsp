@@ -14,8 +14,10 @@ response.setHeader("Expires","0");
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <html>
 	<body>
-		<h1>Hallo Welt</h1>
+		<h1Specification</h1>
 
-		${schema}
+        <c:forEach items="${schema.fields}" var="field">
+            ${field.name}
+        </c:forEach>
 	</body>
 </html>
