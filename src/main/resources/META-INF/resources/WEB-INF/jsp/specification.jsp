@@ -17,16 +17,23 @@ response.setHeader("Expires","0");
         <meta charset="utf-8">
         <title>Specification</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+         crossorigin="anonymous"></script>
     </head>
 	<body>
 		<h1>Specification</h1>
 
-        <c:forEach items="${schema.fields}" var="field">
-            <h3>${field.name}</h3>
-            <div class="field">${field.name}</div>
-        </c:forEach>
+        <div id="accordion">
+            <c:forEach items="${schema.fields}" var="field">
+                <h3>${field.name}</h3>
+                <div class="field">${field.name}</div>
+            </c:forEach>
+        </div>
 
-        <script src="js/specification.js"></script> 
+        <script src="js/specification.js"></script>
 	</body>
 </html>
