@@ -33,13 +33,18 @@ response.setHeader("Expires","0");
                 <div>
                     <div class="select-type" data-type="direct" data-field="${field.name}">
                         <h3>Direct</h3>
-                        <h3 onClick="setNone('${field.name}');">X</h3>
+                        <label for="src-${field.name}">Source:</label>
+                        <input id="src-${field.name}" onchange="setDirectSource('${field.name}', this);" />
+                        <a href="#" onclick="setNone('${field.name}');">reset</a>
                     </div>
                     <div class="select-type" data-type="mapping" data-field="${field.name}">
                         <h3>Mapping</h3>
                     </div>
                     <div class="select-type" data-type="default" data-field="${field.name}">
                         <h3>Default</h3>
+                        <label for="value-${field.name}">Value:</label>
+                        <input id="value-${field.name}" onchange="setDefaultValue('${field.name}', this);">
+                        <a href="#" onclick="setNone('${field.name}');">reset</a>
                     </div>
                     <div class="select-type" data-type="none" data-field="${field.name}">
                         <fieldset>
@@ -56,5 +61,7 @@ response.setHeader("Expires","0");
             </c:forEach>
         </div>
 
+        <a href="#" class="btn btn-primary" onclick="sendState();">Save</button>
+        <a href="#" class="btn btn-success" onclick="sendState();">Validate</button>
 	</body>
 </html>
