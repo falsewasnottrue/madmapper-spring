@@ -15,5 +15,7 @@ response.setHeader("Expires","0");
 <html>
 	<body>
 		<h1>Hallo Welt</h1>
+
+		${schema}
 	</body>
 </html>
