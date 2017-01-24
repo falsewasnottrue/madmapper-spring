@@ -1,0 +1,17 @@
+.mapping-table {
+    width: 60%;
+}
+
+.select-type {
+    position: relative;
+}
+
+.floatBottom {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
+
+.controls {
+    margin: 10px;
+}

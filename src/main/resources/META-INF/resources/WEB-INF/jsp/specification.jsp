@@ -17,11 +17,13 @@ response.setHeader("Expires","0");
         <title>Specification</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="css/madmapper.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
          integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
          crossorigin="anonymous"></script>
+        <script src="js/jquery.tabledit.min.js"></script>
     </head>
 	<body>
     	<script src="js/specification.js"></script>
@@ -35,16 +37,19 @@ response.setHeader("Expires","0");
                         <h3>Direct</h3>
                         <label for="src-${field.name}">Source:</label>
                         <input id="src-${field.name}" onchange="setDirectSource('${field.name}', this);" />
-                        <a href="#" onclick="setNone('${field.name}');">reset</a>
+                        <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
                     <div class="select-type" data-type="mapping" data-field="${field.name}">
                         <h3>Mapping</h3>
+                        <div id="mapping-${field.name}"></div>
+                        <div class="btn btn-success" onclick="addMapping('${field.name}')">+</div>
+                        <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
                     <div class="select-type" data-type="default" data-field="${field.name}">
                         <h3>Default</h3>
                         <label for="value-${field.name}">Value:</label>
                         <input id="value-${field.name}" onchange="setDefaultValue('${field.name}', this);">
-                        <a href="#" onclick="setNone('${field.name}');">reset</a>
+                        <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
                     <div class="select-type" data-type="none" data-field="${field.name}">
                         <fieldset>
@@ -61,7 +66,7 @@ response.setHeader("Expires","0");
             </c:forEach>
         </div>
 
-        <a href="#" class="btn btn-primary" onclick="sendState();">Save</button>
-        <a href="#" class="btn btn-success" onclick="sendState();">Validate</button>
+        <button type="button" class="btn btn-primary controls" onclick="sendState();">Save</button>
+        <button type="button" class="btn btn-success controls" onclick="sendState();">Validate</button>
 	</body>
 </html>

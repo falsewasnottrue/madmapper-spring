@@ -23,9 +23,56 @@
     global.setMapping = function(fieldName) {
         setState(fieldName, {
             "type": "mapping",
-            "mapping": [ {"id": 1, "key": "", "value": ""} ]
+            "mapping": [ {"id": 1, "key": " ", "value": " "} ]
          });
+         showMappingTable(fieldName);
     }
+    global.addMapping = function(fieldName) {
+        var curr = getState(fieldName)
+        curr.mapping.push({"id" : curr.mapping.length + 1, "key": " ", "value": " "});
+        showMappingTable(fieldName);
+    }
+    global.updateMapping = function(fieldName) {
+        var data = $('#mapping-table-' + fieldName + ' .dataRow').map(function(index, elem) {
+            var x =  $(elem).children('.id');
+            var id = $(elem).children('.id').get(0).textContent;
+            var key = $(elem).children('.key').get(0).textContent;
+            var value = $(elem).children('.value').get(0).textContent;
+            return {"id": id, "key": key, "value": value};
+        }).toArray();
+        state.set(fieldName, {
+           "type": "mapping",
+           "mapping": data
+        });
+    }
+
+    global.showMappingTable = function(fieldName) {
+        var element = $('#mapping-' + fieldName);
+        var data = getState(fieldName).mapping;
+        var content = '<table class="mapping-table" id="mapping-table-' + fieldName + '">';
+        content += '<tr><th>Id</th><th>Key</th><th>Value</th></tr>';
+        data.map(function(d) {
+            content += '<tr class="dataRow">' +
+                '<td class="id">' + d.id + '</td>' +
+                '<td class="key">' + d.key + '</td>'+
+                '<td class="value">' + d.value + '</td></tr>';
+        });
+        content += '</table>';
+        element.html(content);
+
+        $('#mapping-table-' + fieldName).Tabledit({
+            columns: {
+                identifier: [0, 'id'],
+                editable: [[1, 'Key'], [2, 'Value']]
+            },
+            deleteButton: false,
+            restoreButton: false,
+            onAlways: function() {
+                updateMapping(fieldName);
+            }
+        });
+    }
+
 
     global.setDefault = function(fieldName) {
         setState(fieldName, {
