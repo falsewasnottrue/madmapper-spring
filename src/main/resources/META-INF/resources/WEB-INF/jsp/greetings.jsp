@@ -14,6 +14,6 @@ response.setHeader("Expires","0");
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <html>
 	<body>
-		<h1>Hello World</h1>
+		<h1>Hallo Welt</h1>
 	</body>
 </html>
