@@ -12,8 +12,8 @@ public class SpecificationController {
     @Autowired
     private SchemaService schemaService;
 
-    @RequestMapping("greeting")
-    public String greeting(final Model model) {
+    @RequestMapping("specification")
+    public String specification(final Model model) {
         // TODO load specification from file
         // TODO add to model
         model.addAttribute("schema", schemaService.getSchema());

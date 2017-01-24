@@ -17,12 +17,16 @@ response.setHeader("Expires","0");
         <meta charset="utf-8">
         <title>Specification</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script
     </head>
 	<body>
 		<h1>Specification</h1>
 
         <c:forEach items="${schema.fields}" var="field">
-            ${field.name}
+            <h3>${field.name}</h3>
+            <div class="field">${field.name}</div>
         </c:forEach>
+
+        <script src="js/specification.js"></script> 
 	</body>
 </html>
