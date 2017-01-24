@@ -1,39 +1,34 @@
 package com.gfk.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.gfk.domain.Schema;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.net.URL;
+import java.util.Scanner;
 
 @Service
 public class SchemaService {
 
-    @Value("${schema.file}")
-    private String schemaFile;
-
     // TODO expose as model files
-    private String schema;
+    private Schema schema;
 
     @Value(value = "classpath:enriched_master_data_v1.avsc")
     private Resource schemaResource;
 
     @PostConstruct
     public void init() throws IOException {
-        // final ObjectMapper jsonMapper = new ObjectMapper();
-        // .
+        final ObjectMapper jsonMapper = new ObjectMapper();
+        final Scanner s = new java.util.Scanner(schemaResource.getInputStream()).useDelimiter("\\A");
+        final String schemaContent = s.hasNext() ? s.next() : "";
 
-        java.util.Scanner s = new java.util.Scanner(schemaResource.getInputStream()).useDelimiter("\\A");
-        schema = s.hasNext() ? s.next() : "";
-      // jsonMapper.
+        schema = jsonMapper.readValue(schemaContent, Schema.class);
     }
 
-    public String getSchema() {
+    public Schema getSchema() {
         return schema;
     }
 }

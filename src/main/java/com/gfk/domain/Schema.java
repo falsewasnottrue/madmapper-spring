@@ -7,9 +7,19 @@ public class Schema {
 
     private Field[] fields;
 
+    public String getType() {
+        return type;
+    }
 
- //     "type" : "record",
-   //           "name" : "masterdata",
-     //         "namespace" : "masterdata",
-       //       "fields" : [
+    public String getName() {
+        return name;
+    }
+
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public Field[] getFields() {
+        return fields;
+    }
 }
