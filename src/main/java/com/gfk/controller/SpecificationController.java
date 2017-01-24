@@ -9,7 +9,9 @@ public class SpecificationController {
 
     @RequestMapping("greeting")
     public String greeting(final Model model) {
-        return "greetings";
+        // TODO load specification from file
+        // TODO add to model
+        return "specification";
     }
 
 }

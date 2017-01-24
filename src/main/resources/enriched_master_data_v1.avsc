@@ -1,0 +1,527 @@
+{
+  "type" : "record",
+  "name" : "masterdata",
+  "namespace" : "masterdata",
+  "fields" : [
+  {
+    "name" : "pnr",
+    "type" : "string"
+  }, {
+    "name" : "panel_household_id",
+    "type" : "string"
+  }, {
+    "name" : "panel_household_person_id",
+    "type" : "string"
+  }, {
+    "name" : "panel_id",
+    "type" :  ["null", "string"],
+    "default": null
+
+
+
+  }, {
+    "name" : "gxl_agegroup_1",
+    "type" : "string"
+  }, {
+    "name" : "gxl_agegroup_2",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_agegroup_3",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_birthdate",
+    "type" : ["null", "string"],
+    "default": null
+
+  }, {
+    "name" : "gxl_birthyear",
+    "type" : ["null", "int"],
+    "default": null
+
+  }, {
+    "name" : "gxl_agehh_hhleader_1",
+    "type" : "string"
+  }, {
+    "name" : "gxl_agehh_hhleader_2",
+    "type" : ["null", "string"],
+    "default": null
+  }, {
+
+    "name" : "gxl_gender",
+    "type" : {"name": "GXL_Gender",
+                     "type": "enum",
+                     "symbols" : ["male", "female"]}
+
+  }, {
+    "name" : "gxl_sizeofhh",
+    "type" : "string"
+  }, {
+    "name" : "gxl_childreninhh_u04",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_childreninhh_u06",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_childreninhh_u14",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_childreninhh_u15",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_childreninhh_u18",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_profession_1",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_profession_2",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_profession_3",
+    "type" : ["null", "string"],
+   "default": null
+   }, {
+    "name" : "gxl_profession_4",
+    "type" : ["null", "string"],
+   "default": null
+   }, {
+    "name" : "gxl_employmentstatus",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_habitation_homeownership",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_habitation_hhinhouse",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_region_0",
+    "type" : ["null", "string"],
+    "default": null
+  }, {
+    "name" : "gxl_region_1",
+    "type" : "string"
+  }, {
+    "name" : "gxl_region_2",
+    "type" : ["null", "string"],
+    "default": null
+  }, {
+    "name" : "gxl_citytype_sizeofcity",
+    "type" : ["null", "string"],
+    "default": null
+  }, {
+    "name" : "gxl_citytype_urbanisation",
+    "type" : ["null", "string"],
+    "default": null
+  }, {
+    "name" : "gxl_income_hh_gross",
+    "type" : ["null", "string"],
+    "default": null
+  }, {
+    "name" : "gxl_income_hh_net",
+    "type" : ["null", "string"],
+    "default": null
+   }, {
+    "name" : "gxl_income_ind_net_1",
+    "type" : ["null", "string"],
+    "default": null
+   }, {
+    "name" : "gxl_income_ind_net_2",
+    "type" : ["null", "string"],
+    "default": null
+   }, {
+    "name" : "gxl_educationlevel_1",
+    "type" : "string"
+  }, {
+    "name" : "gxl_educationlevel_2",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_socialclass_1",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_socialclass_2",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_roleinhh_status_in_hh",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_status_in_hh_2",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_roleinhh_mainshopper",
+    "type" : "string"
+  }, {
+    "name" : "gxl_roleinhh_mainincome",
+    "type" : "string"
+  }, {
+    "name" : "gxl_lifestage_1",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_lifestage_2",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_lifestage_3",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_promosites",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_ls_event",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_ls_innovation",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_ls_mistrust",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_ls_nostalgia",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_ls_quality",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_ls_traditional",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_newtrends",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_rcs",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "gxl_rcs_hh",
+    "type" : ["null", "string"],
+   "default": null
+
+
+
+  }, {
+    "name" : "gxl_fixedline_w_im_intensity",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_fixedline_wo_im_intensity",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_fixedline_ooh_intensity",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_fixedline_intensity",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_smartphone_intensity",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_smartphone_os",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_smartphone_user",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_tablet_intensity",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_tablet_main_user",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_tablet_os",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_tablet_user",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_tablet_user_intensity",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "gxl_tv_intensity",
+    "type" : ["null", "int"],
+   "default": null
+
+
+
+  }, {
+    "name" : "mst_childreninhh_u14_metric",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "mst_age_metric",
+    "type" : "double"
+  }, {
+    "name" : "mst_sizeofhh_metric",
+    "type" : "int"
+  }, {
+    "name" : "mst_income_hh_net_metric",
+    "type" : ["null", "int"],
+   "default": null
+  }, {
+    "name" : "mst_income_ind_net_1_metric",
+    "type" : ["null", "int"],
+   "default": null
+
+
+  }, {
+    "name" : "dep_desktop_panel",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "dep_smartphone_panel",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "dep_tablet_panel",
+    "type" : ["null", "string"],
+   "default": null
+  }, {
+    "name" : "dep_tv_panel",
+    "type" : ["null", "string"],
+   "default": null
+
+
+  }, {
+    "name" : "panel_membership_codes",
+    "type" : [ "null", {
+                       "type" : "array",
+                       "items": [ "null", {
+                                          "name": "value",
+                                          "type": "string"
+                                          } ]
+                       } ],
+    "default": null
+  }, {
+    "name" : "panel_membership_ids",
+    "type" : [ "null", {
+                       "type" : "array",
+                       "items": [ "null", {
+                                         "name": "value",
+                                         "type": "string"
+                                           } ]
+                       } ],
+    "default": null
+  }, {
+    "name" : "local_attributes",
+    "type" : {
+      "type" : "map",
+      "values" : "string"
+    }
+
+  }, {
+    "name" : "dep_valid_from",
+    "type" : "string"
+  }, {
+    "name" : "dep_valid_until",
+    "type" : "string"
+
+
+  }, {
+    "name" : "dep_desktop_rladdon",
+    "type" : "int"
+  }, {
+    "name" : "dep_desktop_rlsniffer",
+    "type" : "int"
+  }, {
+    "name" : "dep_tv_impressions",
+    "type" : "int"
+  }, {
+    "name" : "dep_desktop_pi",
+    "type" : "int"
+  }, {
+    "name" : "dep_mobile_android_pi",
+    "type" : "int"
+  }, {
+    "name" : "dep_mobile_android_apps",
+    "type" : "int"
+  }, {
+    "name" : "dep_mobile_ios_pi",
+    "type" : "int"
+  }, {
+    "name" : "dep_mobile_ios_apps",
+    "type" : "int"
+  }, {
+    "name" : "dep_tablet_android_pi",
+    "type" : "int"
+  }, {
+    "name" : "dep_tablet_android_apps",
+    "type" : "int"
+  }, {
+    "name" : "dep_tablet_ios_pi",
+    "type" : "int"
+  }, {
+    "name" : "dep_tablet_ios_apps",
+    "type" : "int"
+
+
+  },{
+    "name" : "dep_d_activity",
+    "type" : {
+      "type" : "map",
+      "values" : "int"
+    }
+  }, {
+    "name" : "dep_s_activity",
+    "type" : {
+      "type" : "map",
+      "values" : "int"
+    }
+  }, {
+    "name" : "dep_t_activity",
+    "type" : {
+      "type" : "map",
+      "values" : "int"
+    }
+
+
+  },{
+    "name" : "additional_attributes",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "string"
+    } ],
+    "default": null
+
+
+  }, {
+    "name" : "dep_desktop_possession",
+    "type" : "int"
+  }, {
+    "name" : "dep_mobile_possession",
+    "type" : "int"
+  }, {
+    "name" : "dep_tablet_possession",
+    "type" : "int"
+  }, {
+    "name" : "dep_mobile_os",
+    "type" : "int"
+  }, {
+    "name" : "dep_tablet_os",
+    "type" : "int"
+  }, {
+    "name" : "dep_tv_possession",
+    "type" : "int"
+  }, {
+    "name" : "dep_desktop_design_days",
+    "type" : ["null", "int"],
+    "default": null
+  }, {
+    "name" : "dep_desktop_design_weights",
+    "type" : ["null", "double"],
+    "default": null
+  }, {
+    "name" : "dep_mobile_design_days",
+    "type" : ["null", "int"],
+    "default": null
+  }, {
+    "name" : "dep_mobile_design_weights",
+    "type" : ["null", "double"],
+    "default": null
+  }, {
+    "name" : "dep_tablet_design_days",
+    "type" : ["null", "int"],
+    "default": null
+  }, {
+    "name" : "dep_tablet_design_weights",
+    "type" : ["null", "double"],
+    "default": null
+
+
+  }, {
+    "name" : "dep_d_u_usage",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "double"
+    } ],
+    "default": null
+  }, {
+    "name" : "dep_s_u_usage",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "double"
+    } ],
+    "default": null
+  }, {
+    "name" : "dep_s_a_usage",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "double"
+    } ],
+    "default": null
+  }, {
+    "name" : "dep_t_u_usage",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "double"
+    } ],
+    "default": null
+  }, {
+    "name" : "dep_t_a_usage",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "double"
+    } ],
+    "default": null
+  }, {
+    "name" : "dep_v_usage",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "double"
+    } ],
+    "default": null
+
+
+  }, {
+    "name" : "dep_imputation_donors",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "string"
+    } ],
+    "default": null
+  }, {
+    "name" : "dep_weights",
+    "type" : [ "null", {
+      "type" : "map",
+      "values" : "double"
+    } ],
+    "default": null
+
+  }
+]
+}
