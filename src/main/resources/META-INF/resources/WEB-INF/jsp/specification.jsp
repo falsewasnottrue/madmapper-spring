@@ -11,7 +11,6 @@ response.setHeader("Expires","0");
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 
-<c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <html>
     <head>
         <meta charset="utf-8">
@@ -30,7 +29,10 @@ response.setHeader("Expires","0");
         <div id="accordion">
             <c:forEach items="${schema.fields}" var="field">
                 <h3>${field.name}</h3>
-                <div class="field">${field.name}</div>
+                <div>
+                    <c:set var="field" value="${field}" scope="request" />
+                    <jsp:include page="field.jsp" />
+                </div>
             </c:forEach>
         </div>
 
