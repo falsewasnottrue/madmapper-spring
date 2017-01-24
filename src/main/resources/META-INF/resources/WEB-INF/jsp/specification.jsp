@@ -13,8 +13,13 @@ response.setHeader("Expires","0");
 
 <c:set var="ctx" value="${pageContext['request'].contextPath}"/>
 <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Specification</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
 	<body>
-		<h1Specification</h1>
+		<h1>Specification</h1>
 
         <c:forEach items="${schema.fields}" var="field">
             ${field.name}
