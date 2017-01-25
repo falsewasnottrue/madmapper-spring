@@ -1,9 +1,9 @@
 (function($, global, document) {
 
-    global.state = new Map();
+    global.state = {};
 
     global.getState = function(fieldName) {
-        var s = state.get(fieldName);
+        var s = state[fieldName]
         return s || { "type" : "none" };
     }
 
@@ -16,20 +16,19 @@
     global.setRequired = function(fieldName, elem) {
         var required = $(elem).is(':checked');
         var s = getState(fieldName);
-        s.required = required
-        state.set(fieldName, s);
+        s.required = required;
     }
 
     global.setDirect = function(fieldName) {
         setState(fieldName, {
             "type": "direct",
-            "src": null
+            "source": null
         });
     }
     global.setSource = function(fieldName, elem) {
         var source = elem.value;
-        var state = getState(fieldName);
-        state.source = source;
+        var s = getState(fieldName);
+        s.source = source;
     }
 
     global.setMapping = function(fieldName) {
@@ -54,10 +53,10 @@
             var value = $(elem).children('.value').get(0).textContent;
             return {"id": id, "key": key, "value": value};
         }).toArray();
-        state.set(fieldName, {
+        state[fieldName] = {
            "type": "mapping",
            "mapping": data
-        });
+        };
     }
 
     global.showMappingTable = function(fieldName) {
@@ -94,11 +93,11 @@
             "value": null
         });
     }
-    global.setDefaultValue = function() {
-        setState(fieldName, {
+    global.setDefaultValue = function(fieldName) {
+        state[fieldName] = {
             "type": "default",
             "value": elem.value
-        });
+        };
     }
 
     global.setNone = function(fieldName) {
@@ -108,11 +107,22 @@
     }
 
     global.setState = function(fieldName, nextState) {
-        var currState = getState(fieldName)
+        var currState = getState(fieldName);
         $('.select-type[data-field="' + fieldName + '"][data-type="' + currState.type + '"]').hide('slow');
         $('.select-type[data-field="' + fieldName + '"][data-type="' + nextState.type + '"]').show('slow');
 
-        state.set(fieldName, nextState);
+        state[fieldName] = nextState;
+    }
+
+
+    global.saveState = function() {
+        var jsonfile={json:JSON.stringify(state)};
+        $.ajax({
+          type: "POST",
+          url: "/specification",
+          data: jsonfile,
+          dataType: "json"
+        });
     }
 
     global.sendState = function() {

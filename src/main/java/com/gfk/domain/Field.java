@@ -8,14 +8,23 @@ public class Field {
     @JsonProperty("default")
     private String defaulValue;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setType(Object type) {
+        this.type = type;
+    }
+    public void setDefaulValue(String defaulValue) {
+        this.defaulValue = defaulValue;
+    }
+
+
     public String getName() {
         return name;
     }
-
     public Object getType() {
         return type;
     }
-
     public String getDefaulValue() {
         return defaulValue;
     }

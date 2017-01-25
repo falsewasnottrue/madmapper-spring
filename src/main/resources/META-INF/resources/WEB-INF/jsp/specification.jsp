@@ -102,7 +102,7 @@ response.setHeader("Expires","0");
             </c:forEach>
         </div>
 
-        <button type="button" class="btn btn-primary controls" onclick="sendState();">Save</button>
+        <button type="button" class="btn btn-primary controls" onclick="saveState();">Save</button>
         <button type="button" class="btn btn-success controls" onclick="sendState();">Validate</button>
 	</body>
 </html>
