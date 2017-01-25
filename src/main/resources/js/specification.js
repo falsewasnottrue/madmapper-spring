@@ -90,11 +90,11 @@
             "value": null
         });
     }
-    global.setDefaultValue = function(fieldName) {
-        state[fieldName] = {
-            "type": "default",
-            "value": elem.value
-        };
+
+    global.setValue = function(fieldName, elem) {
+        var value = elem.value;
+        var s = getState(fieldName);
+        s.value = value;
     }
 
     global.setNone = function(fieldName) {
@@ -123,7 +123,28 @@
     }
 
     global.updateState = function(newState) {
-        console.log(newState);
+        state = newState;
+        console.log(state);
+        $(".select-type").hide();
+        $(".select-type").each(function(index, elem) {
+            var e = $(elem);
+            var s = getState(e.data("field"))
+            if (s.type == e.data("type")) { e.show(); }
+        });
+
+        for (var fieldName in state) {
+            if (state.hasOwnProperty(fieldName)) {
+                console.log(fieldName);
+                var s = getState(fieldName);
+                console.log(s);
+                if (s.required && s.required != "false") { $('.required-' + fieldName).prop('checked', true); }
+                if (s.origin) { $('.origin-' + fieldName).val(s.origin); }
+                if (s.source) { $('.source-' + fieldName).val(s.source); }
+                if (s.value) { $('.value-' + fieldName).val(s.value); }
+
+                if (s.mapping) { showMappingTable(fieldName); }
+                }
+        }
     }
 
     global.validate = function() {

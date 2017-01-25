@@ -27,9 +27,6 @@ response.setHeader("Expires","0");
     </head>
 	<body>
     	<script src="/js/specification.js"></script>
-    	<script>
-    	    updateState(${specification});
-    	</script>
 
 		<h1>Specification ${specName}</h1>
 
@@ -42,17 +39,17 @@ response.setHeader("Expires","0");
                         <hr>
                         <fieldset>
                             <label>Origin:</label>
-                            <select onchange="setOrigin('${field.name}', this);">
+                            <select class="origin-${field.name}" onchange="setOrigin('${field.name}', this);">
                                <option value="">-- Please choose --</option>
                                <option value="person">Person</option>
                                <option value="househould">Household</option>
                             </select>
                             <label>Required:</label>
-                            <input type="checkbox" onchange="setRequired('${field.name}', this);"/>
+                            <input class="required-${field.name}" type="checkbox" onchange="setRequired('${field.name}', this);"/>
                         </fieldset>
                         <hr>
                         <label for="src-${field.name}">Source:</label>
-                        <input id="src-${field.name}" onchange="setSource('${field.name}', this);" />
+                        <input id="src-${field.name}" class="source-${field.name}" onchange="setSource('${field.name}', this);" />
                         <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
 
@@ -61,17 +58,17 @@ response.setHeader("Expires","0");
                         <hr>
                         <fieldset>
                             <label>Origin:</label>
-                            <select onchange="setOrigin('${field.name}', this);">
+                            <select class="origin-${field.name}" onchange="setOrigin('${field.name}', this);">
                                <option value="">-- Please choose --</option>
                                <option value="person">Person</option>
                                <option value="househould">Household</option>
                             </select>
                             <label>Required:</label>
-                            <input type="checkbox" onchange="setRequired('${field.name}', this);"/>
+                            <input class="required-${field.name}" type="checkbox" onchange="setRequired('${field.name}', this);"/>
                         </fieldset>
                         <hr>
                         <label for="src-${field.name}">Source:</label>
-                        <input id="src-${field.name}" onchange="setSource('${field.name}', this);" />
+                        <input id="src-${field.name}" class="source-${field.name}" onchange="setSource('${field.name}', this);" />
                         <hr>
                         <div id="mapping-${field.name}">&nbsp;</div>
                         <div class="btn btn-success" onclick="addMapping('${field.name}')">+</div>
@@ -83,17 +80,17 @@ response.setHeader("Expires","0");
                         <hr>
                         <fieldset>
                             <label>Origin:</label>
-                            <select onchange="setOrigin('${field.name}', this);">
+                            <select class="origin-${field.name}" onchange="setOrigin('${field.name}', this);">
                                <option value="">-- Please choose --</option>
                                <option value="person">Person</option>
                                <option value="househould">Household</option>
                             </select>
                             <label>Required:</label>
-                            <input type="checkbox" onchange="setRequired('${field.name}', this);"/>
+                            <input class="required-${field.name}" type="checkbox" onchange="setRequired('${field.name}', this);"/>
                         </fieldset>
                         <hr>
                         <label for="value-${field.name}">Value:</label>
-                        <input id="value-${field.name}" onchange="setDefaultValue('${field.name}', this);">
+                        <input id="value-${field.name}" class="value-${field.name}" onchange="setValue('${field.name}', this);">
                         <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
                     <div class="select-type" data-type="none" data-field="${field.name}">
@@ -114,5 +111,8 @@ response.setHeader("Expires","0");
         <button type="button" class="btn btn-primary controls" onclick="saveState('${specName}');">Save</button>
         <button type="button" class="btn btn-primary controls" onclick="validate('${specName}');">Validate</button>
 
+        <script>
+    	    updateState(${specification});
+    	</script>
 	</body>
 </html>
