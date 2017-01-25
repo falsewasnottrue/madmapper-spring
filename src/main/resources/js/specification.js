@@ -111,18 +111,28 @@
         state[fieldName] = nextState;
     }
 
-
-    global.saveState = function() {
+    global.saveState = function(specName) {
         var jsonfile={json:JSON.stringify(state)};
         $.ajax({
           type: "POST",
-          url: "/specification",
+          url: "/save/" + specName,
           data: jsonfile,
           dataType: "json"
+          // TODO callback
         });
     }
 
-    global.sendState = function() {
+    global.updateState = function(newState) {
+        console.log(newState);
+    }
+
+    global.validate = function() {
+        // TODO implement
+        console.log(state);
+    }
+
+    global.generateCSV = function() {
+        // TODO implement
         console.log(state);
     }
 }(window.jQuery, window, document));

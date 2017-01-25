@@ -14,20 +14,24 @@ response.setHeader("Expires","0");
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Specification</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <title>Specification ${specName}</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="css/madmapper.css">
+        <link rel="stylesheet" href="/css/madmapper.css">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
          integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
          crossorigin="anonymous"></script>
-        <script src="js/jquery.tabledit.min.js"></script>
+        <script src="/js/jquery.tabledit.min.js"></script>
     </head>
 	<body>
-    	<script src="js/specification.js"></script>
-		<h1>Specification</h1>
+    	<script src="/js/specification.js"></script>
+    	<script>
+    	    updateState(${specification});
+    	</script>
+
+		<h1>Specification ${specName}</h1>
 
         <div id="accordion">
             <c:forEach items="${schema.fields}" var="field">
@@ -51,6 +55,7 @@ response.setHeader("Expires","0");
                         <input id="src-${field.name}" onchange="setSource('${field.name}', this);" />
                         <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
+
                     <div class="select-type" data-type="mapping" data-field="${field.name}">
                         <h3>Mapping</h3>
                         <hr>
@@ -68,10 +73,11 @@ response.setHeader("Expires","0");
                         <label for="src-${field.name}">Source:</label>
                         <input id="src-${field.name}" onchange="setSource('${field.name}', this);" />
                         <hr>
-                        <div id="mapping-${field.name}"></div>
+                        <div id="mapping-${field.name}">&nbsp;</div>
                         <div class="btn btn-success" onclick="addMapping('${field.name}')">+</div>
                         <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
+
                     <div class="select-type" data-type="default" data-field="${field.name}">
                         <h3>Default</h3>
                         <hr>
@@ -105,9 +111,8 @@ response.setHeader("Expires","0");
             </c:forEach>
         </div>
 
-        <button type="button" class="btn btn-primary controls" onclick="saveState();">Save</button>
-        <button type="button" class="btn btn-primary controls" onclick="validate();">Validate</button>
-        <button type="button" class="btn btn-primary controls" onclick="generateCSV();">Generate</button>
+        <button type="button" class="btn btn-primary controls" onclick="saveState('${specName}');">Save</button>
+        <button type="button" class="btn btn-primary controls" onclick="validate('${specName}');">Validate</button>
 
 	</body>
 </html>
