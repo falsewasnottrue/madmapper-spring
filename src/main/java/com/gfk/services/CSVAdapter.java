@@ -11,15 +11,14 @@ public class CSVAdapter {
 
     private final String SEP = ",";
 
-    /**
-     * src_name
-     * src_origin
-     * mandatory
-     */
     public String jsonToCsv(final String key, final Map<String, Object> values, final Schema schema) {
         final List<String> data = new ArrayList<>();
 
-        data.add(values.get("source").toString());
+        if ("default".equals(values.get("type"))) {
+            data.add(key);
+        } else {
+            data.add(values.get("source").toString());
+        }
         data.add(getOrigin(values));
         data.add(getMandatory(values));
         data.add(getType(key, schema));

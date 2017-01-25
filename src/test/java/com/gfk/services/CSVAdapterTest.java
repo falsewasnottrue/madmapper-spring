@@ -51,7 +51,7 @@ public class CSVAdapterTest {
         final Map<String, Object> data = new LinkedHashMap<>();
         data.put("type", "default");
         data.put("origin", "person");
-        data.put("source", "gxl_agehh_hhleader_1");
+        // data.put("source", "gxl_agehh_hhleader_1");
         data.put("value", "-2");
 
         final String csv = adapter.jsonToCsv("gxl_agehh_hhleader_1", data, schema);

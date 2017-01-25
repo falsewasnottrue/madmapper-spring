@@ -65,6 +65,9 @@ response.setHeader("Expires","0");
                             <input type="checkbox" onchange="setRequired('${field.name}', this);"/>
                         </fieldset>
                         <hr>
+                        <label for="src-${field.name}">Source:</label>
+                        <input id="src-${field.name}" onchange="setSource('${field.name}', this);" />
+                        <hr>
                         <div id="mapping-${field.name}"></div>
                         <div class="btn btn-success" onclick="addMapping('${field.name}')">+</div>
                         <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
@@ -103,6 +106,8 @@ response.setHeader("Expires","0");
         </div>
 
         <button type="button" class="btn btn-primary controls" onclick="saveState();">Save</button>
-        <button type="button" class="btn btn-success controls" onclick="sendState();">Validate</button>
+        <button type="button" class="btn btn-primary controls" onclick="validate();">Validate</button>
+        <button type="button" class="btn btn-primary controls" onclick="generateCSV();">Generate</button>
+
 	</body>
 </html>

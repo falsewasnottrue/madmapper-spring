@@ -29,7 +29,7 @@ public class SpecificationController {
         return "specification";
     }
 
-    @RequestMapping(value = "/specification", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public void saveSpecification(final @RequestParam("json") String json) {
         try {
             specificationService.save(json);
@@ -38,4 +38,13 @@ public class SpecificationController {
         }
     }
 
+    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    public void validateSpecification(final @RequestParam("json") String json) {
+        // TODO
+    }
+
+    @RequestMapping(value = "/generate", method = RequestMethod.POST)
+    public void generateSpecification(final @RequestParam("json") String json) {
+        // TODO
+    }
 }

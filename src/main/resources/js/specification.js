@@ -53,10 +53,7 @@
             var value = $(elem).children('.value').get(0).textContent;
             return {"id": id, "key": key, "value": value};
         }).toArray();
-        state[fieldName] = {
-           "type": "mapping",
-           "mapping": data
-        };
+        state[fieldName].mapping = data
     }
 
     global.showMappingTable = function(fieldName) {
