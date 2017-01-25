@@ -16,7 +16,7 @@ public class SpecificationService {
     @Autowired
     private SchemaService schemaService;
 
-    public void save(final String json) throws IOException {
+    public List<String> generate(final String json) throws IOException {
         final ObjectMapper objectMapper = new ObjectMapper();
         final Map<String, Object> specification = objectMapper.readValue(json, Map.class);
 
@@ -31,7 +31,6 @@ public class SpecificationService {
             csvData.add(csvAdapter.jsonToCsv(key, values, schema));
         }
 
-        System.out.println(csvData);
-        // TODO save to file
+        return csvData;
     }
 }

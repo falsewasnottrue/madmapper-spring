@@ -6,10 +6,7 @@ import com.gfk.domain.Schema;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +25,7 @@ public class CSVAdapterTest {
         field2.setType("string");
         Field field3 = new Field();
         field3.setName("mst_age_metric");
-        field3.setType("integer");
+        field3.setType(Arrays.asList("null", "int"));
 
         schema.setFields(new Field[] { field1, field2, field3 });
     }
@@ -51,7 +48,6 @@ public class CSVAdapterTest {
         final Map<String, Object> data = new LinkedHashMap<>();
         data.put("type", "default");
         data.put("origin", "person");
-        // data.put("source", "gxl_agehh_hhleader_1");
         data.put("value", "-2");
 
         final String csv = adapter.jsonToCsv("gxl_agehh_hhleader_1", data, schema);

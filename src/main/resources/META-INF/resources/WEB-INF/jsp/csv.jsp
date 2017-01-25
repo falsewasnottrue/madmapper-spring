@@ -26,15 +26,10 @@ response.setHeader("Expires","0");
         <script src="js/jquery.tabledit.min.js"></script>
     </head>
 	<body>
-    	<h1>Specifications</h1>
+    	<h1>CSV für <a href="/specification/${specName}">${specName}</a></h1>
 
-        <table class="table table-condensed table-hover">
-            <c:forEach items="${specifications}" var="specName">
-                <tr>
-                    <td><a href="/specification/${specName}">specName</a></td>
-                    <td><a href="/generate/${specName}">generate</a></td>
-                </tr>
-            </c:forEach>
-        </table>
+        <p>
+        <c:forEach items="${csv}" var="line">${line}<br/></c:forEach>
+        </p>
 	</body>
 </html>

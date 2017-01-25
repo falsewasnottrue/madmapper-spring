@@ -65,7 +65,7 @@ public class CSVAdapter {
     private String getType(final String key, final Schema schema) {
         for (Field field : schema.getFields()) {
             if (field.getName().equals(key)) {
-                return field.getType().toString();
+                return field.getTargetType();
             }
         }
         return "";

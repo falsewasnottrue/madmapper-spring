@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class SpecificationController {
@@ -61,13 +62,25 @@ public class SpecificationController {
         return "specs";
     }
 
+    @RequestMapping(value = "/generate/{specName}")
+    public String generateSpecification(final @PathVariable String specName, final Model model) {
+        model.addAttribute("specName", specName);
+        try {
+            final String specification = storeService.load(specName);
+            final List<String> csv = specificationService.generate(specification);
+
+            model.addAttribute("csv", csv);
+        } catch (final IOException e) {
+            logger.error("cannot load " + specName, e);
+        }
+
+        return "csv";
+    }
+
     @RequestMapping(value = "/validate/{specName}", method = RequestMethod.POST)
     public void validateSpecification(final @PathVariable String specName, final @RequestParam("json") String json) {
         // TODO
     }
 
-    @RequestMapping(value = "/generate/{specName}", method = RequestMethod.POST)
-    public void generateSpecification(final @PathVariable String specName, final @RequestParam("json") String json) {
-        // TODO
-    }
+
 }
