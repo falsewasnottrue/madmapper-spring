@@ -143,7 +143,7 @@
                 if (s.value) { $('.value-' + fieldName).val(s.value); }
 
                 if (s.mapping) { showMappingTable(fieldName); }
-                }
+            }
         }
     }
 
