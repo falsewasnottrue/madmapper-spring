@@ -7,31 +7,45 @@
         return s || { "type" : "none" };
     }
 
+    global.setOrigin = function(fieldName, elem) {
+        var origin = $(elem).val();
+        var s = getState(fieldName)
+        s.origin = origin;
+    }
+
+    global.setRequired = function(fieldName, elem) {
+        var required = $(elem).is(':checked');
+        var s = getState(fieldName);
+        s.required = required
+        state.set(fieldName, s);
+    }
+
     global.setDirect = function(fieldName) {
         setState(fieldName, {
             "type": "direct",
             "src": null
         });
     }
-    global.setDirectSource = function(fieldName, elem) {
-        setState(fieldName, {
-            "type": "direct",
-            "src": elem.value
-        });
+    global.setSource = function(fieldName, elem) {
+        var source = elem.value;
+        var state = getState(fieldName);
+        state.source = source;
     }
 
     global.setMapping = function(fieldName) {
         setState(fieldName, {
             "type": "mapping",
-            "mapping": [ {"id": 1, "key": " ", "value": " "} ]
+            "mapping": [ {"id": 1, "key": "KEY", "value": "VALUE"} ]
          });
          showMappingTable(fieldName);
     }
+
     global.addMapping = function(fieldName) {
         var curr = getState(fieldName)
-        curr.mapping.push({"id" : curr.mapping.length + 1, "key": " ", "value": " "});
+        curr.mapping.push({"id" : curr.mapping.length + 1, "key": "KEY", "value": "VALUE"});
         showMappingTable(fieldName);
     }
+
     global.updateMapping = function(fieldName) {
         var data = $('#mapping-table-' + fieldName + ' .dataRow').map(function(index, elem) {
             var x =  $(elem).children('.id');

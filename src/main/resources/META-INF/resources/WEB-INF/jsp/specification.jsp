@@ -35,18 +35,54 @@ response.setHeader("Expires","0");
                 <div>
                     <div class="select-type" data-type="direct" data-field="${field.name}">
                         <h3>Direct</h3>
+                        <hr>
+                        <fieldset>
+                            <label>Origin:</label>
+                            <select onchange="setOrigin('${field.name}', this);">
+                               <option value="">-- Please choose --</option>
+                               <option value="person">Person</option>
+                               <option value="househould">Household</option>
+                            </select>
+                            <label>Required:</label>
+                            <input type="checkbox" onchange="setRequired('${field.name}', this);"/>
+                        </fieldset>
+                        <hr>
                         <label for="src-${field.name}">Source:</label>
-                        <input id="src-${field.name}" onchange="setDirectSource('${field.name}', this);" />
+                        <input id="src-${field.name}" onchange="setSource('${field.name}', this);" />
                         <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
                     <div class="select-type" data-type="mapping" data-field="${field.name}">
                         <h3>Mapping</h3>
+                        <hr>
+                        <fieldset>
+                            <label>Origin:</label>
+                            <select onchange="setOrigin('${field.name}', this);">
+                               <option value="">-- Please choose --</option>
+                               <option value="person">Person</option>
+                               <option value="househould">Household</option>
+                            </select>
+                            <label>Required:</label>
+                            <input type="checkbox" onchange="setRequired('${field.name}', this);"/>
+                        </fieldset>
+                        <hr>
                         <div id="mapping-${field.name}"></div>
                         <div class="btn btn-success" onclick="addMapping('${field.name}')">+</div>
                         <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
                     </div>
                     <div class="select-type" data-type="default" data-field="${field.name}">
                         <h3>Default</h3>
+                        <hr>
+                        <fieldset>
+                            <label>Origin:</label>
+                            <select onchange="setOrigin('${field.name}', this);">
+                               <option value="">-- Please choose --</option>
+                               <option value="person">Person</option>
+                               <option value="househould">Household</option>
+                            </select>
+                            <label>Required:</label>
+                            <input type="checkbox" onchange="setRequired('${field.name}', this);"/>
+                        </fieldset>
+                        <hr>
                         <label for="value-${field.name}">Value:</label>
                         <input id="value-${field.name}" onchange="setDefaultValue('${field.name}', this);">
                         <div class="btn btn-danger floatBottom" onclick="setNone('${field.name}');">reset</div>
