@@ -34,6 +34,7 @@ response.setHeader("Expires","0");
             <c:forEach items="${schema.fields}" var="field">
                 <h3>${field.name}</h3>
                 <div>
+                    <div class="error-${field.name} error"></div>
                     <div class="select-type" data-type="direct" data-field="${field.name}">
                         <h3>Direct</h3>
                         <hr>

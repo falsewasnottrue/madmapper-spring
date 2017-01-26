@@ -112,11 +112,11 @@
     }
 
     global.saveState = function(specName) {
-        var jsonfile={json:JSON.stringify(state)};
+        var jsonData={json:JSON.stringify(state)};
         $.ajax({
           type: "POST",
           url: "/save/" + specName,
-          data: jsonfile,
+          data: jsonData,
           dataType: "json"
           // TODO callback
         });
@@ -147,14 +147,26 @@
         }
     }
 
-    global.validate = function() {
-        // TODO implement
-        console.log(state);
-    }
-
-    global.generateCSV = function() {
-        // TODO implement
-        console.log(state);
+    global.validate = function(specName) {
+        var jsonData={json:JSON.stringify(state)};
+        $.ajax({
+            type: "POST",
+            url: "/validate/" + specName,
+            data: jsonData,
+            dataType: "json",
+            error: function(errorMessage) {
+                console.log(errorMessage);
+            },
+            success: function(validationResult) {
+                console.log(validationResult);
+                $('.error').html('');
+                for (var fieldName in validationResult) {
+                    if (validationResult.hasOwnProperty(fieldName)) {
+                        $('.error-' + fieldName).text(validationResult[fieldName]);
+                    }
+                }
+            }
+        });
     }
 }(window.jQuery, window, document));
 

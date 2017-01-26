@@ -6,10 +6,7 @@ import com.gfk.services.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,8 +75,10 @@ public class SpecificationController {
     }
 
     @RequestMapping(value = "/validate/{specName}", method = RequestMethod.POST)
-    public void validateSpecification(final @PathVariable String specName, final @RequestParam("json") String json) {
+    public @ResponseBody String validateSpecification(final @PathVariable String specName, final @RequestParam("json") String json) {
+
         // TODO
+        return "{\"dep_weights\": \"An error occured\"}";
     }
 
 

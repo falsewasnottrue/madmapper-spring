@@ -15,3 +15,8 @@
 .controls {
     margin: 5px;
 }
+
+.error {
+    font-weight: bold;
+    color: red;
+}
