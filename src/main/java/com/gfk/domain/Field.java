@@ -12,16 +12,6 @@ public class Field {
     @JsonProperty("default")
     private String defaultValue;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setType(Object type) {
-        this.type = type;
-    }
-    public void setDefaultValue(String defaulValue) {
-        this.defaultValue = defaulValue;
-    }
-
     public String getTargetType() {
         final Map<String, String> types = new HashMap<String, String>() {{
             put("int", "integer");
@@ -37,6 +27,20 @@ public class Field {
             return types.getOrDefault(((Map)type).get("values"), "string");
         }
         return "string";
+    }
+
+    public Boolean isRequired() {
+        return (type instanceof String);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setType(Object type) {
+        this.type = type;
+    }
+    public void setDefaultValue(String defaulValue) {
+        this.defaultValue = defaulValue;
     }
 
     public String getName() {

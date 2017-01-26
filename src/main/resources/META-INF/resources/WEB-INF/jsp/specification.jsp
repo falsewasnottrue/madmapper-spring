@@ -32,7 +32,7 @@ response.setHeader("Expires","0");
 
         <div id="accordion">
             <c:forEach items="${schema.fields}" var="field">
-                <h3>${field.name}</h3>
+                <h3 class="title-${field.name}">${field.name}</h3>
                 <div>
                     <div class="error-${field.name} error"></div>
                     <div class="select-type" data-type="direct" data-field="${field.name}">

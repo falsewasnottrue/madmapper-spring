@@ -134,9 +134,7 @@
 
         for (var fieldName in state) {
             if (state.hasOwnProperty(fieldName)) {
-                console.log(fieldName);
                 var s = getState(fieldName);
-                console.log(s);
                 if (s.required && s.required != "false") { $('.required-' + fieldName).prop('checked', true); }
                 if (s.origin) { $('.origin-' + fieldName).val(s.origin); }
                 if (s.source) { $('.source-' + fieldName).val(s.source); }
@@ -158,10 +156,10 @@
                 console.log(errorMessage);
             },
             success: function(validationResult) {
-                console.log(validationResult);
                 $('.error').html('');
                 for (var fieldName in validationResult) {
                     if (validationResult.hasOwnProperty(fieldName)) {
+                        $('.title-' + fieldName).addClass('error');
                         $('.error-' + fieldName).text(validationResult[fieldName]);
                     }
                 }

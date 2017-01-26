@@ -3,6 +3,7 @@ package com.gfk.controller;
 import com.gfk.services.SchemaService;
 import com.gfk.services.SpecificationService;
 import com.gfk.services.StoreService;
+import com.gfk.services.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,9 @@ import org.slf4j.LoggerFactory;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class SpecificationController {
@@ -27,6 +30,9 @@ public class SpecificationController {
 
     @Autowired
     private StoreService storeService;
+
+    @Autowired
+    private ValidationService validationService;
 
     @RequestMapping(value = "/specs")
     public String listSpecifications(final Model model) {
@@ -60,7 +66,7 @@ public class SpecificationController {
     }
 
     @RequestMapping(value = "/generate/{specName}")
-    public String generateSpecification(final @PathVariable String specName, final Model model) {
+    public String generateCSV(final @PathVariable String specName, final Model model) {
         model.addAttribute("specName", specName);
         try {
             final String specification = storeService.load(specName);
@@ -76,10 +82,17 @@ public class SpecificationController {
 
     @RequestMapping(value = "/validate/{specName}", method = RequestMethod.POST)
     public @ResponseBody String validateSpecification(final @PathVariable String specName, final @RequestParam("json") String json) {
+        try {
+            final Map<String, String> validationResult = validationService.validate(json);
+            final List<String> messages = new ArrayList<>();
+            for (Map.Entry<String, String> result : validationResult.entrySet()) {
+                messages.add("\"" + result.getKey() + "\": \"" + result.getValue() + "\"");
+            }
 
-        // TODO
-        return "{\"dep_weights\": \"An error occured\"}";
+            return "{" + String.join(",", messages) + "}";
+        } catch (final IOException e) {
+            logger.error("cannot validate " + specName, e);
+            return "";
+        }
     }
-
-
 }
