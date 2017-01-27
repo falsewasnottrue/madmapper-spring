@@ -28,10 +28,10 @@ response.setHeader("Expires","0");
 	<body>
     	<h1>Specifications</h1>
 
-        <table class="table table-condensed table-hover">
+        <table class="table table-hover">
             <c:forEach items="${specifications}" var="specName">
                 <tr>
-                    <td><a href="/specification/${specName}">specName</a></td>
+                    <td><a href="/specification/${specName}">${specName}</a></td>
                     <td><a href="/generate/${specName}">generate</a></td>
                 </tr>
             </c:forEach>

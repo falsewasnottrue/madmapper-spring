@@ -23,11 +23,35 @@ public class ValidationService {
         final Map<String, String> result = new HashMap<>();
 
         for (final Field field : schema.getFields()) {
+
+            // required fields
             if (field.isRequired() && specification.get(field.getName()) == null) {
                 result.put(field.getName(), "This field is required");
             }
+
+            // integer for default mapping
+            if ("integer".equals(field.getTargetType()) && specification.get(field.getName()) != null) {
+                final Map<String, Object> spec = (Map<String, Object>)specification.get(field.getName());
+                if ("default".equals(spec.get("type")) && !isInt(spec.get("value"))) {
+                    result.put(field.getName(), "The value must be an integer");
+                }
+            }
+
+            // TODO source must be set
         }
 
         return result;
+    }
+
+    private Boolean isInt(final Object value) {
+        if (value == null) {
+            return false;
+        }
+        try {
+            Integer.parseInt(value.toString());
+            return true;
+        } catch (final NumberFormatException e) {
+            return false;
+        }
     }
 }

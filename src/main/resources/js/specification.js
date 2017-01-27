@@ -59,7 +59,7 @@
     global.showMappingTable = function(fieldName) {
         var element = $('#mapping-' + fieldName);
         var data = getState(fieldName).mapping;
-        var content = '<table class="mapping-table" id="mapping-table-' + fieldName + '">';
+        var content = '<table class="mapping-table table table-hover" id="mapping-table-' + fieldName + '">';
         content += '<tr><th>Id</th><th>Key</th><th>Value</th></tr>';
         data.map(function(d) {
             content += '<tr class="dataRow">' +
@@ -71,7 +71,7 @@
         element.html(content);
 
         var table = $('#mapping-table-' + fieldName);
-        if (table && table.size > 0) {
+        if (table && table.length > 0) {
             table.Tabledit({
                 columns: {
                     identifier: [0, 'id'],
@@ -159,7 +159,9 @@
                 console.log(errorMessage);
             },
             success: function(validationResult) {
-                $('.error').html('');
+                $('div.error').text('');
+                $('h3.error').removeClass('error');
+
                 for (var fieldName in validationResult) {
                     if (validationResult.hasOwnProperty(fieldName)) {
                         $('.title-' + fieldName).addClass('error');
@@ -172,9 +174,11 @@
 }(window.jQuery, window, document));
 
 $(document).ready(function() {
-    $("#accordion").accordion();
+    $("#accordion").accordion({
+        collapsible: true
+    });
     $(".select").checkboxradio({
-      icon: false
+        icon: false
     });
 
     $(".select-type").hide();

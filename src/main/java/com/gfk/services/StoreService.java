@@ -41,7 +41,7 @@ public class StoreService {
 
     public void save(final String name, final String data) throws IOException {
         final Path path = FileSystems.getDefault().getPath(workingDir, name);
-        Files.write(path, data.getBytes(), StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+        Files.write(path, data.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
     }
 
     public List<String> loadCsv(final String name) throws IOException {

@@ -7,23 +7,19 @@ public class JsonAdapter {
     private final String SEP = ";";
 
     public Map<String, Object> csvToJson(final String csvLine) {
-        System.out.println("csvLine: " + csvLine);
-
         final Map<String, Object> result = new HashMap<>();
         final List<String> items = Arrays.asList(csvLine.split("\\s*;\\s*"));
 
-        System.out.println("items: " + items);
-        System.out.println("items: " + items.size());
         final Iterator<String> iterator = items.iterator();
         final String src_name = iterator.next();
         final String src_origin = iterator.next();
         final String mandatory =  iterator.next();
-        iterator.next(); // trg_type
+        iterator.next(); // ignore: trg_type
         final String trg_name =  iterator.next();
         final String src_value = iterator.next();
-        final String trg_value = iterator.hasNext() ? iterator.next() : null;
+        final String trg_value = iterator.hasNext() ? iterator.next() : "";
         if (iterator.hasNext()) {
-            iterator.next();// note_value
+            iterator.next(); // ignore: note_value
         }
 
         result.put("type", "direct");
@@ -36,7 +32,7 @@ public class JsonAdapter {
             result.put("origin", "household");
         }
 
-        if (src_value.length() == 0 && trg_value != null && trg_value.length() > 0) {
+        if (src_value.length() == 0 && trg_value.length() > 0) {
             result.put("type", "default");
             result.put("value", trg_value);
         }
@@ -53,8 +49,7 @@ public class JsonAdapter {
 
             while (iterator.hasNext()) {
                 final String src_val = iterator.next();
-                // System.out.println(trg_name + "::" + src_val);
-                final String trg_val = iterator.hasNext() ? iterator.next() : null;
+                final String trg_val = iterator.hasNext() ? iterator.next() : "";
 
                 final Map<String, Object> m = new HashMap<>();
                 m.put("id", index++);
@@ -64,7 +59,6 @@ public class JsonAdapter {
             }
             result.put("mapping", mappings);
         }
-        // System.out.print(result);
 
         return result;
     }
