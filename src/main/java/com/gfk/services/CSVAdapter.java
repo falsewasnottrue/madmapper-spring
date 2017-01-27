@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class CSVAdapter {
 
-    private final String SEP = ",";
+    private final String SEP = ";";
 
     public String jsonToCsv(final String key, final Map<String, Object> values, final Schema schema) {
         final List<String> data = new ArrayList<>();

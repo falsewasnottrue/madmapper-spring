@@ -70,17 +70,20 @@
         content += '</table>';
         element.html(content);
 
-        $('#mapping-table-' + fieldName).Tabledit({
-            columns: {
-                identifier: [0, 'id'],
-                editable: [[1, 'Key'], [2, 'Value']]
-            },
-            deleteButton: false,
-            restoreButton: false,
-            onAlways: function() {
-                updateMapping(fieldName);
-            }
-        });
+        var table = $('#mapping-table-' + fieldName);
+        if (table && table.size > 0) {
+            table.Tabledit({
+                columns: {
+                    identifier: [0, 'id'],
+                    editable: [[1, 'Key'], [2, 'Value']]
+                },
+                deleteButton: false,
+                restoreButton: false,
+                onAlways: function() {
+                    updateMapping(fieldName);
+                }
+            });
+        }
     }
 
 

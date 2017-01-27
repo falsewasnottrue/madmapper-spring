@@ -1,6 +1,5 @@
 package com.gfk.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gfk.domain.Field;
 import com.gfk.domain.Schema;
 import org.junit.Before;
@@ -8,7 +7,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CSVAdapterTest {
 
@@ -40,7 +39,7 @@ public class CSVAdapterTest {
 
         final String csv = adapter.jsonToCsv("dep_valid_from", data, schema);
 
-        assertEquals("gueltig_ab,HH,y,string,dep_valid_from", csv);
+        assertEquals("gueltig_ab;HH;y;string;dep_valid_from", csv);
     }
 
     @Test
@@ -52,7 +51,7 @@ public class CSVAdapterTest {
 
         final String csv = adapter.jsonToCsv("gxl_agehh_hhleader_1", data, schema);
 
-        assertEquals("gxl_agehh_hhleader_1,P,n,string,gxl_agehh_hhleader_1,,-2", csv);
+        assertEquals("gxl_agehh_hhleader_1;P;n;string;gxl_agehh_hhleader_1;;-2", csv);
     }
 
     @Test
@@ -84,6 +83,6 @@ public class CSVAdapterTest {
 
         final String csv = adapter.jsonToCsv("mst_age_metric", data, schema);
 
-        assertEquals("age0_18_25_35_45_55_65_max,P,y,integer,mst_age_metric,18-24,21,,25-34,30,45-54,50", csv);
+        assertEquals("age0_18_25_35_45_55_65_max;P;y;integer;mst_age_metric;18-24;21;;25-34;30;45-54;50", csv);
     }
 }

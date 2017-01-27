@@ -95,4 +95,20 @@ public class SpecificationController {
             return "";
         }
     }
+
+    @RequestMapping(value = "/import/{csvName}")
+    public String importCsv(final @PathVariable String csvName, final Model model) {
+        model.addAttribute("specName", csvName);
+        model.addAttribute("schema", schemaService.getSchema());
+
+        try {
+            final List<String> csv = storeService.loadCsv(csvName);
+            final String specification = specificationService.importCsv(csv);
+            model.addAttribute("specification", specification);
+        } catch (final IOException e) {
+            logger.error("cannot load csv file " + csvName, e);
+        }
+
+        return "specification";
+    }
 }

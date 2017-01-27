@@ -18,6 +18,9 @@ public class StoreService {
     @Value("${working.dir}")
     private String workingDir;
 
+    @Value("${csv.dir}")
+    private String csvDir;
+
     public List<String> listSpecifications() {
         final File folder = new File(workingDir);
         final File[] listOfFiles = folder.listFiles();
@@ -37,7 +40,14 @@ public class StoreService {
     }
 
     public void save(final String name, final String data) throws IOException {
-        final Path path =  FileSystems.getDefault().getPath(workingDir, name);
+        final Path path = FileSystems.getDefault().getPath(workingDir, name);
         Files.write(path, data.getBytes(), StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    public List<String> loadCsv(final String name) throws IOException {
+        final List<String> result = new ArrayList<>();
+        final Path path =  FileSystems.getDefault().getPath(csvDir, name);
+        Files.lines(path, StandardCharsets.ISO_8859_1).forEach(result::add);
+        return result;
     }
 }
