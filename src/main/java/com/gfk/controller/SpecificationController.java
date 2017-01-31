@@ -56,13 +56,14 @@ public class SpecificationController {
     }
 
     @RequestMapping(value = "/save/{specName}", method = RequestMethod.POST)
-    public String saveSpecification(final @PathVariable String specName, final @RequestParam("json") String json) {
+    public @ResponseBody String saveSpecification(final @PathVariable String specName, final @RequestParam("json") String json) {
         try {
             storeService.save(specName, json);
         } catch (final IOException e) {
             logger.error("cannot save " + specName, e);
+            return "{\"msg\":\"error + " + e.getMessage() + "\"}";
         }
-        return "specs";
+        return "{\"msg\":\"success\"}";
     }
 
     @RequestMapping(value = "/generate/{specName}")

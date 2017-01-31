@@ -30,7 +30,8 @@ response.setHeader("Expires","0");
 
 		<h1>Specification ${specName}</h1>
 
-        <div id="accordion">
+        <div class="fixed-top">
+            <div id="accordion">
             <c:forEach items="${schema.fields}" var="field">
                 <h3 class="title-${field.name}">${field.name}: ${field.targetType}</h3>
                 <div>
@@ -108,9 +109,12 @@ response.setHeader("Expires","0");
                 </div>
             </c:forEach>
         </div>
+        </div>
 
-        <button type="button" class="btn btn-primary controls" onclick="saveState('${specName}');">Save</button>
-        <button type="button" class="btn btn-primary controls" onclick="validate();">Validate</button>
+        <div class="fixed-bottom">
+            <button type="button" class="btn btn-primary controls" onclick="saveState('${specName}');">Save</button>
+            <button type="button" class="btn btn-primary controls" onclick="validate();">Validate</button>
+        </div>
 
         <script>
     	    updateState(${specification});

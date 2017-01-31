@@ -130,8 +130,13 @@
           type: "POST",
           url: "/save/" + specName,
           data: jsonData,
-          dataType: "json"
-          // TODO callback -> show dialog
+          dataType: "json",
+          error: function(errorMessage) {
+              alert('ERROR trying to save: ' + JSON.stringify(errorMessage));
+          },
+          success: function(data) {
+              alert('Successfully saved')
+          }
         });
     }
 
