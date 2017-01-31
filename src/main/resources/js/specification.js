@@ -159,13 +159,13 @@
                 console.log(errorMessage);
             },
             success: function(validationResult) {
-                $('div.error').text('');
+                $('div.error').html('');
                 $('h3.error').removeClass('error');
 
                 for (var fieldName in validationResult) {
                     if (validationResult.hasOwnProperty(fieldName)) {
                         $('.title-' + fieldName).addClass('error');
-                        $('.error-' + fieldName).text(validationResult[fieldName]);
+                        $('.error-' + fieldName).html(validationResult[fieldName]);
                     }
                 }
             }

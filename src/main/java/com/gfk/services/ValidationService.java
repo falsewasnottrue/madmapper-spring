@@ -26,46 +26,52 @@ public class ValidationService {
 
         for (final Field field : schema.getFields()) {
             final List<String> messages = new ArrayList<>();
-            // required fields
-            if (field.isRequired() && specification.get(field.getName()) == null) {
-                messages.add("This field is required");
-            }
+            if (specification.get(field.getName()) != null) {
+                final Map<String, Object> spec = (Map<String, Object>) specification.get(field.getName());
 
-            // data type for default and mapping
-            if ("integer".equals(field.getTargetType()) && specification.get(field.getName()) != null) {
-                final Map<String, Object> spec = (Map<String, Object>)specification.get(field.getName());
-                if ("default".equals(spec.get("type")) && !isInt(spec.get("value"))) {
-                    messages.add("The value must be an integer");
-                } else if ("mapping".equals(spec.get("type"))) {
-                    final List<Object> mappings = (List<Object>)spec.get("mapping");
-                    for (final Object mapping : mappings) {
-                        final Map<String, Object> m = (Map<String, Object>)mapping;
-                        if (!isInt(m.get("value"))) {
-                            messages.add("The value " + m.get("value") + " must be an integer");
+                // required fields
+                if (field.isRequired() && specification.get(field.getName()) == null) {
+                    messages.add("This field is required");
+                }
+
+                // data type for default and mapping
+                if ("integer".equals(field.getTargetType())) {
+                    if ("default".equals(spec.get("type")) && !isInt(spec.get("value"))) {
+                        messages.add("The value must be an integer");
+                    } else if ("mapping".equals(spec.get("type"))) {
+                        final List<Object> mappings = (List<Object>) spec.get("mapping");
+                        for (final Object mapping : mappings) {
+                            final Map<String, Object> m = (Map<String, Object>) mapping;
+                            if (!isInt(m.get("value"))) {
+                                messages.add("The value " + m.get("key") + " must be mapped to an integer");
+                            }
                         }
                     }
                 }
-            }
 
-            if ("double".equals(field.getTargetType()) && specification.get(field.getName()) != null) {
-                final Map<String, Object> spec = (Map<String, Object>)specification.get(field.getName());
-                if ("default".equals(spec.get("type")) && !isDouble(spec.get("value"))) {
-                    messages.add("The value must be a double");
-                } else if ("mapping".equals(spec.get("type"))) {
-                    final List<Object> mappings = (List<Object>)spec.get("mapping");
-                    for (final Object mapping : mappings) {
-                        final Map<String, Object> m = (Map<String, Object>)mapping;
-                        if (!isDouble(m.get("value"))) {
-                            messages.add("The value " + m.get("value") + " must be a double");
+                if ("double".equals(field.getTargetType())) {
+                    if ("default".equals(spec.get("type")) && !isDouble(spec.get("value"))) {
+                        messages.add("The value must be a double");
+                    } else if ("mapping".equals(spec.get("type"))) {
+                        final List<Object> mappings = (List<Object>) spec.get("mapping");
+                        for (final Object mapping : mappings) {
+                            final Map<String, Object> m = (Map<String, Object>) mapping;
+                            if (!isDouble(m.get("value"))) {
+                                messages.add("The value " + m.get("key") + " must be mapped to a double");
+                            }
                         }
                     }
                 }
-            }
 
-            // TODO source must be set for direct and default
+                if ("direct".equals(spec.get("type")) || "mapping".equals(spec.get("type"))) {
+                    if (spec.get("source") == null || "".equals(spec.get("source"))) {
+                        messages.add("Source must be specified");
+                    }
+                }
+            }
 
             if (messages.size() > 0) {
-                result.put(field.getName(), String.join(", ", messages));
+                result.put(field.getName(), String.join("<br/>", messages));
             }
         }
 
