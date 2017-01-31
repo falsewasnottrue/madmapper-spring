@@ -31,11 +31,19 @@ public class ValidationService {
                 messages.add("This field is required");
             }
 
-            // data type for default
+            // data type for default and mapping
             if ("integer".equals(field.getTargetType()) && specification.get(field.getName()) != null) {
                 final Map<String, Object> spec = (Map<String, Object>)specification.get(field.getName());
                 if ("default".equals(spec.get("type")) && !isInt(spec.get("value"))) {
                     messages.add("The value must be an integer");
+                } else if ("mapping".equals(spec.get("type"))) {
+                    final List<Object> mappings = (List<Object>)spec.get("mapping");
+                    for (final Object mapping : mappings) {
+                        final Map<String, Object> m = (Map<String, Object>)mapping;
+                        if (!isInt(m.get("value"))) {
+                            messages.add("The value " + m.get("value") + " must be an integer");
+                        }
+                    }
                 }
             }
 
@@ -43,10 +51,16 @@ public class ValidationService {
                 final Map<String, Object> spec = (Map<String, Object>)specification.get(field.getName());
                 if ("default".equals(spec.get("type")) && !isDouble(spec.get("value"))) {
                     messages.add("The value must be a double");
+                } else if ("mapping".equals(spec.get("type"))) {
+                    final List<Object> mappings = (List<Object>)spec.get("mapping");
+                    for (final Object mapping : mappings) {
+                        final Map<String, Object> m = (Map<String, Object>)mapping;
+                        if (!isDouble(m.get("value"))) {
+                            messages.add("The value " + m.get("value") + " must be a double");
+                        }
+                    }
                 }
             }
-
-            // TODO data type for mapping
 
             // TODO source must be set for direct and default
 
