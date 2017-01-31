@@ -80,8 +80,8 @@ public class SpecificationController {
         return "csv";
     }
 
-    @RequestMapping(value = "/validate/{specName}", method = RequestMethod.POST)
-    public @ResponseBody String validateSpecification(final @PathVariable String specName, final @RequestParam("json") String json) {
+    @RequestMapping(value = "/validate", method = RequestMethod.POST)
+    public @ResponseBody String validateSpecification(final @RequestParam("json") String json) {
         try {
             final Map<String, String> validationResult = validationService.validate(json);
             final List<String> messages = new ArrayList<>();
@@ -91,7 +91,7 @@ public class SpecificationController {
 
             return "{" + String.join(",", messages) + "}";
         } catch (final IOException e) {
-            logger.error("cannot validate " + specName, e);
+            logger.error("cannot validate " + json, e);
             return "";
         }
     }

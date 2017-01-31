@@ -11,12 +11,14 @@
         var origin = $(elem).val();
         var s = getState(fieldName)
         s.origin = origin;
+        validate();
     }
 
     global.setRequired = function(fieldName, elem) {
         var required = $(elem).is(':checked');
         var s = getState(fieldName);
         s.required = required;
+        validate();
     }
 
     global.setDirect = function(fieldName) {
@@ -24,11 +26,13 @@
             "type": "direct",
             "source": null
         });
+        validate();
     }
     global.setSource = function(fieldName, elem) {
         var source = elem.value;
         var s = getState(fieldName);
         s.source = source;
+        validate();
     }
 
     global.setMapping = function(fieldName) {
@@ -37,12 +41,14 @@
             "mapping": [ {"id": 1, "key": "KEY", "value": "VALUE"} ]
          });
          showMappingTable(fieldName);
+         validate();
     }
 
     global.addMapping = function(fieldName) {
         var curr = getState(fieldName)
         curr.mapping.push({"id" : curr.mapping.length + 1, "key": "KEY", "value": "VALUE"});
         showMappingTable(fieldName);
+        validate();
     }
 
     global.updateMapping = function(fieldName) {
@@ -53,7 +59,7 @@
             var value = $(elem).children('.value').get(0).textContent;
             return {"id": id, "key": key, "value": value};
         }).toArray();
-        state[fieldName].mapping = data
+        state[fieldName].mapping = data;
     }
 
     global.showMappingTable = function(fieldName) {
@@ -81,6 +87,7 @@
                 restoreButton: false,
                 onAlways: function() {
                     updateMapping(fieldName);
+                    validate();
                 }
             });
         }
@@ -92,18 +99,21 @@
             "type": "default",
             "value": null
         });
+        validate();
     }
 
     global.setValue = function(fieldName, elem) {
         var value = elem.value;
         var s = getState(fieldName);
         s.value = value;
+        validate();
     }
 
     global.setNone = function(fieldName) {
         if (confirm("Really set to none?")) {
             setState(fieldName, {"type": "none"});
         }
+        validate();
     }
 
     global.setState = function(fieldName, nextState) {
@@ -121,7 +131,7 @@
           url: "/save/" + specName,
           data: jsonData,
           dataType: "json"
-          // TODO callback
+          // TODO callback -> show dialog
         });
     }
 
@@ -146,13 +156,14 @@
                 if (s.mapping) { showMappingTable(fieldName); }
             }
         }
+        validate();
     }
 
-    global.validate = function(specName) {
+    global.validate = function() {
         var jsonData={json:JSON.stringify(state)};
         $.ajax({
             type: "POST",
-            url: "/validate/" + specName,
+            url: "/validate/",
             data: jsonData,
             dataType: "json",
             error: function(errorMessage) {

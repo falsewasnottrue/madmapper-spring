@@ -110,7 +110,7 @@ response.setHeader("Expires","0");
         </div>
 
         <button type="button" class="btn btn-primary controls" onclick="saveState('${specName}');">Save</button>
-        <button type="button" class="btn btn-primary controls" onclick="validate('${specName}');">Validate</button>
+        <button type="button" class="btn btn-primary controls" onclick="validate();">Validate</button>
 
         <script>
     	    updateState(${specification});

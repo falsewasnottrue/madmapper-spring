@@ -26,13 +26,13 @@ public class ValidationService {
 
         for (final Field field : schema.getFields()) {
             final List<String> messages = new ArrayList<>();
+            // required fields
+            if (field.isRequired() && specification.get(field.getName()) == null) {
+                messages.add("This field is required");
+            }
+
             if (specification.get(field.getName()) != null) {
                 final Map<String, Object> spec = (Map<String, Object>) specification.get(field.getName());
-
-                // required fields
-                if (field.isRequired() && specification.get(field.getName()) == null) {
-                    messages.add("This field is required");
-                }
 
                 // data type for default and mapping
                 if ("integer".equals(field.getTargetType())) {
