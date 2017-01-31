@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -23,21 +25,34 @@ public class ValidationService {
         final Map<String, String> result = new HashMap<>();
 
         for (final Field field : schema.getFields()) {
-
+            final List<String> messages = new ArrayList<>();
             // required fields
             if (field.isRequired() && specification.get(field.getName()) == null) {
-                result.put(field.getName(), "This field is required");
+                messages.add("This field is required");
             }
 
-            // integer for default mapping
+            // data type for default
             if ("integer".equals(field.getTargetType()) && specification.get(field.getName()) != null) {
                 final Map<String, Object> spec = (Map<String, Object>)specification.get(field.getName());
                 if ("default".equals(spec.get("type")) && !isInt(spec.get("value"))) {
-                    result.put(field.getName(), "The value must be an integer");
+                    messages.add("The value must be an integer");
                 }
             }
 
-            // TODO source must be set
+            if ("double".equals(field.getTargetType()) && specification.get(field.getName()) != null) {
+                final Map<String, Object> spec = (Map<String, Object>)specification.get(field.getName());
+                if ("default".equals(spec.get("type")) && !isDouble(spec.get("value"))) {
+                    messages.add("The value must be a double");
+                }
+            }
+
+            // TODO data type for mapping
+
+            // TODO source must be set for direct and default
+
+            if (messages.size() > 0) {
+                result.put(field.getName(), String.join(", ", messages));
+            }
         }
 
         return result;
@@ -49,6 +64,18 @@ public class ValidationService {
         }
         try {
             Integer.parseInt(value.toString());
+            return true;
+        } catch (final NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private Boolean isDouble(final Object value) {
+        if (value == null) {
+            return false;
+        }
+        try {
+            Double.parseDouble(value.toString());
             return true;
         } catch (final NumberFormatException e) {
             return false;
